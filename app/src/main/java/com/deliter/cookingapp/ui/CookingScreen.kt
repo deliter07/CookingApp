@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,12 +16,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Card
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -40,17 +41,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.deliter.cookingapp.R
 import com.deliter.cookingapp.data.Dish
 import com.deliter.cookingapp.data.DishRepository
 import com.deliter.cookingapp.data.MenuItems
-import com.deliter.cookingapp.data.TypeOfDish
 import kotlinx.coroutines.launch
 
 
@@ -132,6 +131,7 @@ private fun CookingList(
         itemsIndexed(currentSelectedRecipe) { index, dish ->
 
             var expanded by remember { mutableStateOf(false) }
+            var favorite by remember { mutableStateOf(false) }
 
             Card(modifier = Modifier.padding(3.dp)) {
                 Column {
@@ -157,6 +157,17 @@ private fun CookingList(
                                 contentDescription = "Dish image",
                                 contentScale = ContentScale.Crop
                             )
+                        } else {
+                            IconToggleButton(
+                                checked = favorite,
+                                onCheckedChange = { favorite = !favorite }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Favorite,
+                                    contentDescription = "Favorite Item",
+                                    tint = if (favorite) Color.Magenta else Color.LightGray
+                                )
+                            }
                         }
 
                         IconButton(
