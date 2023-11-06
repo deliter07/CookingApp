@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CookingApp</string>
+    <string name="chicken_tikka_masala">Чикен тикка масала</string>
+    <string name="shci_iz_kvashenoy">Щи из квашеной капусты</string>
+    <string name="solianka">Солянка</string>
+    <string name="tom_yam">Том Ям</string>
+    <string name="share">share</string>
+</resources>
