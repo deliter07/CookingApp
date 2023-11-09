@@ -1,6 +1,7 @@
 package com.deliter.cookingapp.ui
 
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -187,6 +188,7 @@ private fun CookingList(
                             painter = painterResource(dish.dishImage),
                             contentDescription = null,
                             modifier = Modifier
+                                .animateContentSize()
                                 .fillMaxWidth()
                                 .height(150.dp),
                             contentScale = ContentScale.Crop
